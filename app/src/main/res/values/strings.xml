@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RvInnerRV</string>
+    <string name="parent_title">Parent title 1</string>
 </resources>

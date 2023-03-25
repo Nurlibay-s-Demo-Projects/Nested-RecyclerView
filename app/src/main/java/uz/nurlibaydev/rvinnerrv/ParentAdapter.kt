@@ -3,33 +3,33 @@ package uz.nurlibaydev.rvinnerrv
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import uz.nurlibaydev.rvinnerrv.databinding.ParentItemBinding
+import uz.nurlibaydev.rvinnerrv.databinding.ItemParentBinding
 
 /**
- *  Created by Nurlibay Koshkinbaev on 25/03/2023 21:19
+ *  Created by Nurlibay Koshkinbaev on 25/03/2023 23:09
  */
 
 class ParentAdapter : RecyclerView.Adapter<ParentAdapter.ParentViewHolder>() {
+
+    private val childAdapter = ChildAdapter()
 
     var list = mutableListOf<Parent>()
         set(value) {
             field = value
         }
 
-    private val childAdapter = ChildAdapter()
-
-    inner class ParentViewHolder(private val binding: ParentItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ParentViewHolder(private val binding: ItemParentBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(parent: Parent) {
             binding.apply {
-                parentTitle.text = parent.title
-                childRecyclerview.adapter = childAdapter
-                childAdapter.movies = parent.movieList
+                rvChild.adapter = childAdapter
+                tvParentTitle.text = parent.title
+                childAdapter.movies = parent.movies.toMutableList()
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ParentViewHolder {
-        return ParentViewHolder(ParentItemBinding.bind(LayoutInflater.from(parent.context).inflate(R.layout.parent_item, parent, false)))
+        return ParentViewHolder(ItemParentBinding.bind(LayoutInflater.from(parent.context).inflate(R.layout.item_parent, parent, false)))
     }
 
     override fun getItemCount() = list.size

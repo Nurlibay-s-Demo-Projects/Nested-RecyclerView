@@ -1,10 +1,13 @@
 package uz.nurlibaydev.rvinnerrv
 
+import java.io.Serializable
+
 /**
- *  Created by Nurlibay Koshkinbaev on 25/03/2023 21:17
+ *  Created by Nurlibay Koshkinbaev on 25/03/2023 22:56
  */
+
 
 data class Parent(
     val title: String,
-    val movieList: ArrayList<Movie>
-)
+    val movies: List<Movie>
+): Serializable
