@@ -27,12 +27,12 @@ class MainActivity : AppCompatActivity() {
             data.add(Parent("Parent title ${it + 1}", movies))
         }
 
-//        val intent = Intent(this, SecondActivity::class.java)
-//        val bundle = Bundle()
-//        bundle.putSerializable("item", data[0])
-//        intent.putExtra("item_data", bundle)
-//        startActivity(intent)
-
         parentAdapter.list.addAll(data)
+
+        parentAdapter.setOnItemClickListener {
+            val i = Intent(this, SecondActivity::class.java)
+            i.putExtra("item_data", it)
+            startActivity (i)
+        }
     }
 }

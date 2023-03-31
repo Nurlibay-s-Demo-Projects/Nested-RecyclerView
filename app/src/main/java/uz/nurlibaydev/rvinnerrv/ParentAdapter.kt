@@ -24,8 +24,17 @@ class ParentAdapter : RecyclerView.Adapter<ParentAdapter.ParentViewHolder>() {
                 rvChild.adapter = childAdapter
                 tvParentTitle.text = parent.title
                 childAdapter.movies = parent.movies.toMutableList()
+
+                layout.setOnClickListener {
+                    itemClick.invoke(parent)
+                }
             }
         }
+    }
+
+    private var itemClick: (Parent) -> Unit = {}
+    fun setOnItemClickListener(block: (Parent) -> Unit) {
+        itemClick = block
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ParentViewHolder {
